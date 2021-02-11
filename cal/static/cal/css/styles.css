@@ -1,3 +1,23 @@
+  .left {
+    float: left;
+  }
+  
+  .right {
+    float: right;
+  }
+  
+  .btn {
+    outline: none;
+    color: black;
+    background-color: transparent;
+    box-shadow: 2px 5px 10px rgb(9, 70, 48);
+    margin-right: 3px;
+  }
+  
+  .clearfix {
+    margin: 15px;
+  }
+  
 .calendar {
     width: 98%;
     margin: auto;
@@ -34,6 +54,10 @@
     padding: 0px 5px 0px 20px;
   }
   
-  a {
-    color: #17a2b8;
+  .clearfix a {
+    color: black;
+  }
+
+  .clearfix a:hover, a:active {
+      background-color: rgb(101, 188, 194);
   }
