@@ -26,7 +26,7 @@ SECRET_KEY = 'igt(8-uy*k+v7ttnk9#u0evmw%(jicfvql$52$p0$2t-^cy#l#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'https://famtouch.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'famtouch.herokuapp.com']
 
 
 # Application definition
