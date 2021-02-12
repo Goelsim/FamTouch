@@ -9,8 +9,21 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
   <link rel="stylesheet" type="text/css" href="{% static 'cal/css/styles.css' %}">
   <title>FamTouch</title>
+  <style>
+    h1.title {
+      text-align: center;
+      color: rgb(5, 54, 46);
+    }
+  </style>
 </head>
 <body>
+
+  <h1 class="title">
+    {% block title %}
+    FamTouch Calendar
+    {% endblock %}
+  </h1>
+  <hr>
 
   {% block content %}
   {% endblock %}

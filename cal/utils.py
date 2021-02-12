@@ -12,7 +12,7 @@ class FamilyCalendar(HTMLCalendar):
         daily_events = events.filter(start_time__day=day)
         d_events = ''
         for event in daily_events:
-            d_events += f'<li> {event.title} </li>'
+            d_events += f'<li> {event.get_html_url} </li>'
 
         if day != 0:
             return f"<td><span class= 'date'>{day}</span><ul> {d_events} </ul></td>"
