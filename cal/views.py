@@ -50,8 +50,10 @@ def event(request, event_id=None):
     else:
         instance = Event()
     
-    form = FamEventForm(request.POST, instance=instance)
+    form = FamEventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('cal:famcal'))
+    else:
+        form = FamEventForm(instance=instance)
     return render(request, 'cal/event.html', {'form': form})
