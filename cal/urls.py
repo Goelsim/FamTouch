@@ -5,6 +5,6 @@ app_name = 'cal'
 urlpatterns = [
     #url('', views.index, name='index'),
     url('', views.FamCalendar.as_view(), name='famcal'),
-    url('new/', views.event, name='new_event'),
-    url('edit/(?P<event_id>\d+)/', views.event, name='edit_event'),
+    url('admin/cal/event/add/', views.event, name='new_event'),
+    url('admin/cal/event/(?P<event_id>\d+)/change/edit/', views.event, name='edit_event'),
 ]
