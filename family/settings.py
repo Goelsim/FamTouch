@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cal.apps.CalConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [

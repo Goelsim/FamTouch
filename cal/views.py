@@ -1,10 +1,14 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
+from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import AuthenticationForm
 from datetime import datetime, timedelta, date
 from django.utils.safestring import mark_safe
-from .forms import FamEventForm
+from .forms import FamEventForm, NewUserForm
 from .utils import FamilyCalendar
 from .models import *
 import calendar
@@ -57,3 +61,38 @@ def event(request, event_id=None):
     else:
         form = FamEventForm(instance=instance)
     return render(request, 'cal/event.html', {'form': form})
+
+def register_request(request):
+	if request.method == "POST":
+		form = NewUserForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			login(request, user)
+			messages.success(request, "Registration successful." )
+			return redirect("cal:famcal")
+		messages.error(request, "Unsuccessful registration. Invalid information.")
+	form = NewUserForm
+	return render (request=request, template_name="cal/register.html", context={"register_form":form})
+
+def login_request(request):
+	if request.method == "POST":
+		form = AuthenticationForm(request, data=request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				login(request, user)
+				messages.info(request, f"You are now logged in as {username}.")
+				return redirect("cal:famcal")
+			else:
+				messages.error(request,"Invalid username or password.")
+		else:
+			messages.error(request,"Invalid username or password.")
+	form = AuthenticationForm()
+	return render(request=request, template_name="cal/login.html", context={"login_form":form})
+
+def logout_request(request):
+	logout(request)
+	messages.info(request, "You have successfully logged out.") 
+	return redirect("cal:login")
